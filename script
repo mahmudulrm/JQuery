@@ -1,0 +1,48 @@
+
+               <form class="form-inline">
+                  <div class="form-group" style="padding-top:10px; padding-right:10px;">
+                     <label class="filter-col"  style="margin-right:0;" for="pref-perpage">Stock Status</label>
+                     <select name="users" id="usersid" onchange="showlist(this.value)" class=" form-control">
+                       <!-- <option value="">Select One:</option> -->
+                        <option value="1">IN Stock</option>
+						<option value="4">Product Type</option>
+                        <option value="5">Purchase date</option>
+                        <option value="6">Purchase date and Product Type</option>
+                        <option value="7">Date Range</option>
+                        <option value="8">Date Range and Product Type</option>
+                        <option value="2">less than 5</option>
+                        <option value="3">Greater than 5</option>
+                     </select>
+                  </div>
+               </form>
+
+<script>
+function showlist(str) {							  
+			 if (str=="") {
+			document.getElementById("showinfo").innerHTML="";
+			return;
+			 } 
+			 if (window.XMLHttpRequest) {
+			// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+			 } else { // code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			 }
+			 xmlhttp.onreadystatechange=function() {
+			if (this.readyState==4 && this.status==200) {
+			  document.getElementById("showinfo").innerHTML=this.responseText;
+			}
+			 }
+			 xmlhttp.open("GET","admin/stock-search.php?q="+str,true);
+       // 
+			 xmlhttp.send();
+       
+       
+	
+			$( ".Producttype" ).addClass( "hiddenclass" );
+			$( ".Purchasedate" ).addClass( "hiddenclass" );
+			$( ".daterenge" ).addClass( "hiddenclass" );	
+      
+    }
+    
+    </script>
